@@ -1,10 +1,9 @@
-import Sale from "../models/Sale.js";
+import Item from "../models/Item.js";
 
-import item from "../models/item.js";
 
 export const getAllitems = async (req, res) => {
   try {
-    const items = await item.find();
+    const items = await Item.find();
     // Create The item Info.
 
     res.status(200).json({
@@ -21,9 +20,9 @@ export const getAllitems = async (req, res) => {
 
 export const getitemById = async (req, res) => {
   try {
-    const items = await item.findById(req.params.id);
+    const items = await Item.findById(req.params.id);
 
-    if (!item) {
+    if (!Item) {
       return res.status(404).json({
         success: false,
         error: "item not found",
@@ -51,7 +50,7 @@ export const getitemById = async (req, res) => {
 
 export const createitem = async (req, res) => {
   try {
-    const newitem = new item(req.body);
+    const newitem = new Item(req.body);
     const saveditem = await newitem.save();
 
     res.status(201).json({
@@ -79,12 +78,12 @@ export const createitem = async (req, res) => {
 
 export const updateitem = async (req, res) => {
   try {
-    const items = await item.findByIdAndUpdate(req.params.id, req.body, {
+    const items = await Item.findByIdAndUpdate(req.params.id, req.body, {
       new: true, // Return updated document
       runValidators: true, // Run model validators on update
     });
 
-    if (!item) {
+    if (!Item) {
       return res.status(404).json({
         success: false,
         error: "item not found",
@@ -118,7 +117,7 @@ export const updateitem = async (req, res) => {
 
 export const deleteitem = async (req, res) => {
   try {
-    const items = await item.findByIdAndDelete(req.params.id);
+    const items = await Item.findByIdAndDelete(req.params.id);
 
     if (!items) {
       return res.status(404).json({

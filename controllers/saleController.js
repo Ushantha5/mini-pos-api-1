@@ -1,10 +1,8 @@
 import Sale from "../models/Sale.js";
 
-import sale from "../models/sale.js";
-
 export const getAllsales = async (req, res) => {
   try {
-    const sales = await sale.find();
+    const sales = await Sale.find();
     // Create The sale Info.
 
     res.status(200).json({
@@ -21,9 +19,9 @@ export const getAllsales = async (req, res) => {
 
 export const getsaleById = async (req, res) => {
   try {
-    const sales = await sale.findById(req.params.id);
+    const sales = await Sale.findById(req.params.id);
 
-    if (!sale) {
+    if (!sales) {
       return res.status(404).json({
         success: false,
         error: "sale not found",
@@ -51,7 +49,7 @@ export const getsaleById = async (req, res) => {
 
 export const createsale = async (req, res) => {
   try {
-    const newsale = new sale(req.body);
+    const newsale = new Sale(req.body);
     const savedsale = await newsale.save();
 
     res.status(201).json({
@@ -79,12 +77,12 @@ export const createsale = async (req, res) => {
 
 export const updatesale = async (req, res) => {
   try {
-    const sales = await sale.findByIdAndUpdate(req.params.id, req.body, {
+    const sales = await Sale.findByIdAndUpdate(req.params.id, req.body, {
       new: true, // Return updated document
       runValidators: true, // Run model validators on update
     });
 
-    if (!sale) {
+    if (!sales) {
       return res.status(404).json({
         success: false,
         error: "sale not found",
@@ -146,4 +144,3 @@ export const deletesale = async (req, res) => {
 };
 
 
-import Item from "../models/Item.js";

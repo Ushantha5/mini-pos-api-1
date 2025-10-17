@@ -1,26 +1,18 @@
 import express from express
 
 import {
-  getAllItem,
-  getItemById,
-  createItem,
-  updateItem,
-  deleteItem,
+  getAllauths,
+  getauthById,
+  createauth,
+  updateauth,
+  deleteauth,
 } from "../controllers/authController.js";
 
 const router = express.Router()
-router.get("/", (req,res) => { 
-    res.send("Get All Item")
-});
-router.post("/", (req,res) => { 
-    res.send(" Create All Item")
+router.get("/",getAllauths)
+router.get("/:id",getauthById)
+router.post("/",createauth);
+router.put("/:id",updateauth);
+router.delete("/:id", deleteauth);
 
-});
-router.put("/:id", (req,res) => { 
-    res.send("Update One Item")
-
-});
-router.delete("/:id", (req,res) => { 
-    res.send("Delete One Item")
-
-});export default router
+export default router

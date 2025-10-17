@@ -1,4 +1,4 @@
-import Sale from "../models/Sale.js";
+
 
 import customer from "../models/customer.js";
 
@@ -146,4 +146,3 @@ export const deletecustomer = async (req, res) => {
 };
 
 
-import Item from "../models/Item.js";

@@ -1,5 +1,3 @@
-import Sale from "../models/Sale.js";
-
 import auth from "../models/auth.js";
 
 export const getAllauths = async (req, res) => {
@@ -146,4 +144,3 @@ export const deleteauth = async (req, res) => {
 };
 
 
-import Item from "../models/Item.js";
