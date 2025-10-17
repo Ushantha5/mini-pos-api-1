@@ -1,5 +1,4 @@
-import express from express
-
+import express from "express";
 import {
   getAllItem,
   getItemById,
@@ -8,11 +7,11 @@ import {
   deleteItem,
 } from "../controllers/itemController.js";
 
-const router = express.Router()
-router.get("/",getAllItem)
-router.get("/:id",getItemById)
-router.post("/",createItem);
-router.put("/:id",updateItem);
+const router = express.Router();
+router.get("/", getAllItem);
+router.get("/:id", getItemById);
+router.post("/", createItem);
+router.put("/:id", updateItem);
 router.delete("/:id", deleteItem);
 
-export default router
+export default router;

@@ -1,8 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import morgan from "morgan";
-import { connectDB } from "./config/db.js";
+const morgan = require("morgan");import { connectDB } from "./config/db.js";
 import customerRoutes from "./routes/customerRoutes.js";
 import itemRoutes from "./routes/itemRoutes.js";
 import saleRoutes from "./routes/saleRoutes.js";
@@ -10,7 +9,6 @@ import authRoutes from "./routes/authRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 
 dotenv.config();
-await connectDB();
 
 const app = express();
 app.use(cors());

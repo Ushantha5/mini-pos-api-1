@@ -1,5 +1,4 @@
-import express from express
-
+import express from "express";
 import {
   getAllCustomers,
   getCustomerById,
@@ -8,11 +7,11 @@ import {
   deleteCustomer,
 } from "../controllers/CustomerController.js";
 
-const router = express.Router()
-router.get("/",getAllCustomers)
-router.get("/:id",getCustomerById)
-router.post("/",createCustomer);
-router.put("/:id",updateCustomer);
+const router = express.Router();
+router.get("/", getAllCustomers);
+router.get("/:id", getCustomerById);
+router.post("/", createCustomer);
+router.put("/:id", updateCustomer);
 router.delete("/:id", deleteCustomer);
 
-export default router
+export default router;
