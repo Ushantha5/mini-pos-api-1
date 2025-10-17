@@ -1,2 +1,8 @@
+// IGNORE NODE node_modules DEPLOY or PUSH GITHUB
+
 node_modules
+
+
+// HIDE SENSITIVE INFORMATION
+
 .env
