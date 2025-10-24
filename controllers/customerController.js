@@ -1,8 +1,6 @@
+import customer from "../models/Customer.js";
 
-
-import customer from "../models/customer.js";
-
-export const getAllcustomers = async (req, res) => {
+export const getAllCustomers = async (req, res) => {
   try {
     const customers = await customer.find();
     // Create The customer Info.
@@ -19,7 +17,7 @@ export const getAllcustomers = async (req, res) => {
   }
 };
 
-export const getcustomerById = async (req, res) => {
+export const getCustomerById = async (req, res) => {
   try {
     const customers = await customer.findById(req.params.id);
 
@@ -49,17 +47,22 @@ export const getcustomerById = async (req, res) => {
   }
 };
 
-export const createcustomer = async (req, res) => {
+export const createCustomer = async (req, res) => {
   try {
-    const newcustomer = new customer(req.body);
-    const savedcustomer = await newcustomer.save();
+    const newCustomer = new customer(req.body);
 
-    res.status(201).json({
+    const savedCustomer = await newCustomer.save();
+
+    console.log(newCustomer);
+
+    console.log("after post");
+
+    return res.status(201).json({
       success: true,
-      data: savedcustomer,
+      data: savedCustomer,
     });
   } catch (error) {
-    if (error.title === "ValidationError") {
+    if (error.name === "ValidationError") {
       const errors = Object.values(error.errors).map((err) => ({
         field: err.path,
         message: err.message,
@@ -70,19 +73,23 @@ export const createcustomer = async (req, res) => {
         details: errors,
       });
     }
-    //   res.status(500).json({
-    //     success: false,
-    //     error: "Failed to create customer",
-    //   });
+    res.status(500).json({
+      success: false,
+      error: "Failed to create customer",
+    });
   }
 };
 
-export const updatecustomer = async (req, res) => {
+export const updateCustomer = async (req, res) => {
   try {
-    const customers = await customer.findByIdAndUpdate(req.params.id, req.body, {
-      new: true, // Return updated document
-      runValidators: true, // Run model validators on update
-    });
+    const customers = await customer.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true, // Return updated document
+        runValidators: true, // Run model validators on update
+      }
+    );
 
     if (!customer) {
       return res.status(404).json({
@@ -116,7 +123,7 @@ export const updatecustomer = async (req, res) => {
   }
 };
 
-export const deletecustomer = async (req, res) => {
+export const deleteCustomer = async (req, res) => {
   try {
     const customers = await customer.findByIdAndDelete(req.params.id);
 
@@ -144,5 +151,3 @@ export const deletecustomer = async (req, res) => {
     });
   }
 };
-
-

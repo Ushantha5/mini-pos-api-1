@@ -1,10 +1,9 @@
 import Item from "../models/Item.js";
 
-
-export const getAllitems = async (req, res) => {
+// Change: getAllitems → getAllItems
+export const getAllItems = async (req, res) => {
   try {
     const items = await Item.find();
-    // Create The item Info.
 
     res.status(200).json({
       data: items,
@@ -18,11 +17,13 @@ export const getAllitems = async (req, res) => {
   }
 };
 
-export const getitemById = async (req, res) => {
+// Change: getitemById → getItemById
+export const getItemById = async (req, res) => {
   try {
     const items = await Item.findById(req.params.id);
 
-    if (!Item) {
+    if (!items) {
+      // Changed from !Item to !items
       return res.status(404).json({
         success: false,
         error: "item not found",
@@ -48,7 +49,8 @@ export const getitemById = async (req, res) => {
   }
 };
 
-export const createitem = async (req, res) => {
+// Change: createitem → createItem
+export const createItem = async (req, res) => {
   try {
     const newitem = new Item(req.body);
     const saveditem = await newitem.save();
@@ -58,7 +60,8 @@ export const createitem = async (req, res) => {
       data: saveditem,
     });
   } catch (error) {
-    if (error.title === "ValidationError") {
+    if (error.name === "ValidationError") {
+      // Changed from error.title
       const errors = Object.values(error.errors).map((err) => ({
         field: err.path,
         message: err.message,
@@ -69,21 +72,23 @@ export const createitem = async (req, res) => {
         details: errors,
       });
     }
-    //   res.status(500).json({
-    //     success: false,
-    //     error: "Failed to create item",
-    //   });
+    res.status(500).json({
+      success: false,
+      error: "Failed to create item",
+    });
   }
 };
 
-export const updateitem = async (req, res) => {
+// Change: updateitem → updateItem
+export const updateItem = async (req, res) => {
   try {
     const items = await Item.findByIdAndUpdate(req.params.id, req.body, {
-      new: true, // Return updated document
-      runValidators: true, // Run model validators on update
+      new: true,
+      runValidators: true,
     });
 
-    if (!Item) {
+    if (!items) {
+      // Changed from !Item to !items
       return res.status(404).json({
         success: false,
         error: "item not found",
@@ -115,7 +120,8 @@ export const updateitem = async (req, res) => {
   }
 };
 
-export const deleteitem = async (req, res) => {
+// Change: deleteitem → deleteItem
+export const deleteItem = async (req, res) => {
   try {
     const items = await Item.findByIdAndDelete(req.params.id);
 
@@ -143,6 +149,3 @@ export const deleteitem = async (req, res) => {
     });
   }
 };
-
-
-import Item from "../models/Item.js";

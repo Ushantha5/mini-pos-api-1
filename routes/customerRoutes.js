@@ -5,9 +5,10 @@ import {
   createCustomer,
   updateCustomer,
   deleteCustomer,
-} from "../controllers/CustomerController.js";
+} from "../controllers/customerController.js"; 
 
 const router = express.Router();
+
 router.get("/", getAllCustomers);
 router.get("/:id", getCustomerById);
 router.post("/", createCustomer);

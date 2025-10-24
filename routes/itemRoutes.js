@@ -1,14 +1,13 @@
 import express from "express";
 import {
-  getAllItem,
+  getAllItems,
   getItemById,
   createItem,
   updateItem,
   deleteItem,
 } from "../controllers/itemController.js";
-
 const router = express.Router();
-router.get("/", getAllItem);
+router.get("/", getAllItems);
 router.get("/:id", getItemById);
 router.post("/", createItem);
 router.put("/:id", updateItem);

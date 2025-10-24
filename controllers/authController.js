@@ -1,5 +1,4 @@
-import auth from "../models/auth.js";
-
+import User from "../models/User.js";
 export const getAllauths = async (req, res) => {
   try {
     const auths = await auth.find();
@@ -142,5 +141,3 @@ export const deleteauth = async (req, res) => {
     });
   }
 };
-
-
