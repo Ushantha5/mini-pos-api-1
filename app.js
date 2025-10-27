@@ -16,7 +16,7 @@ connectDB();
 
 const app = express();
 app.use(cors());
-// app.use(morgan("dev"));
+app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/api/customers", customerRoutes);

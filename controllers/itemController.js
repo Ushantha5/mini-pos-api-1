@@ -6,6 +6,8 @@ export const getAllItems = async (req, res) => {
     const items = await Item.find();
 
     res.status(200).json({
+      success: true,
+      count: items.length,
       data: items,
     });
   } catch (error) {
@@ -26,13 +28,13 @@ export const getItemById = async (req, res) => {
       // Changed from !Item to !items
       return res.status(404).json({
         success: false,
-        error: "item not found",
+        error: "Item not found",
       });
     }
 
     res.json({
       success: true,
-      data: items,
+      data: Item,
     });
   } catch (error) {
     if (error.name === "CastError") {
